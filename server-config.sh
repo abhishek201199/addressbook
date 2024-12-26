@@ -3,7 +3,8 @@
 sudo yum install git -y
 sudo yum install maven -y
 
-sudo yum install java-17-openjdk java-17-openjdk-devel -y
+sudo yum install java-17-amazon-corretto -y
+
 
 
 
