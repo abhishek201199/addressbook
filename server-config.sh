@@ -19,7 +19,7 @@ else
    git checkout master
 fi
 
-# export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
-# export PATH=$JAVA_HOME/bin:$PATH
-# source /etc/profile
+export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
+export PATH=$JAVA_HOME/bin:$PATH
+source /etc/profile
 mvn package
