@@ -3,7 +3,8 @@
 sudo yum install git -y
 sudo yum install maven -y
 
-sudo yum install -y https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.rpm
+sudo yum install java-17-openjdk java-17-openjdk-devel -y
+
 
 
 if [ -d "addressbook" ]
@@ -17,7 +18,7 @@ else
    git checkout master
 fi
 
-export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
-export PATH=$JAVA_HOME/bin:$PATH
-source /etc/profile
+# export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
+# export PATH=$JAVA_HOME/bin:$PATH
+# source /etc/profile
 mvn package
