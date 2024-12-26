@@ -2,7 +2,9 @@
 
 sudo yum install git -y
 sudo yum install maven -y
-sudo yum install java-17-amazon-corretto.x86_64 -y 
+
+sudo yum install -y https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.rpm
+
 
 if [ -d "addressbook" ]
 then
