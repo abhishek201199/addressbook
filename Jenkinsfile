@@ -3,6 +3,10 @@ pipeline {
     tools {
         maven 'maven' 
     }
+    environment {
+        DEPLOY_SERVER = 'ec2-user@172.31.8.93'  // Remote server to SSH into
+         
+    }
 
     stages {
         stage('compile') {
@@ -20,8 +24,13 @@ pipeline {
             }
         }
          stage('package') {
-             agent { label 'jenkin_slave' }
+             agent any
             steps {
+                sshagent(['slave2']) {  // Replace with your Jenkins SSH credential ID
+                sh "scp -o StrictHostKeyChecking=no server-config.sh ${DEPLOY_SERVER}:/home/ec2-user"
+                sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER} 'bash server-config.sh'"
+                    
+                }
                 echo 'this is pacakge'
                 sh 'mvn package'
             }
