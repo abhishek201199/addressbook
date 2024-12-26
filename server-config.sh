@@ -2,7 +2,7 @@
 
 sudo yum install git -y
 sudo yum install maven -y
-sudo yum install java-1.8.0-openjdk-devel -y 
+sudo yum install java-17-amazon-corretto.x86_64 -y 
 
 if [ -d "addressbook" ]
 then
@@ -15,7 +15,7 @@ else
    git checkout master
 fi
 
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.402.b06-1.amzn2.0.1.x86_64
+export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto.x86_64
 export PATH=$JAVA_HOME/bin:$PATH
 source /etc/profile
 mvn package
