@@ -1,6 +1,6 @@
 # Use an official Tomcat image with Maven included as a parent image
 
-FROM tomcat:8.5.72-jdk8-openjdk-buster
+FROM tomcat:8.5-jdk8
 
 # Set environment variables for Maven
 
