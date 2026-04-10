@@ -1,18 +1,21 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
+        agent any
         stage('compile') {
             steps {
                 sh 'mvn compile'
             }
         }
         stage('Test') {
+             agent any
             steps {
                sh 'mvn test'
             }
         }
         stage('package') {
+             agent 'jen_slave'
     //          environment {
     //     JAVA_HOME = '/usr/lib/jvm/java-11-amazon-corretto.x86_64'
     //     PATH = "${JAVA_HOME}/bin:${env.PATH}"
