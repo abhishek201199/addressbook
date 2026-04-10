@@ -22,6 +22,7 @@ pipeline {
     // }
          tools {
         jdk 'JAVA11'
+        maven 'mymaven'
     }
             steps {
                 sh 'mvn package'
