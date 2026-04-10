@@ -15,7 +15,7 @@ pipeline {
             }
         }
         stage('package') {
-             agent 'jen_slave'
+             agent {label'jen_slave'}
     //          environment {
     //     JAVA_HOME = '/usr/lib/jvm/java-11-amazon-corretto.x86_64'
     //     PATH = "${JAVA_HOME}/bin:${env.PATH}"
