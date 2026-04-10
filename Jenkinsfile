@@ -2,8 +2,8 @@ pipeline {
     agent none
 
     stages {
-        agent any
-        stage('compile') {
+           stage('compile') {
+             agent any
             steps {
                 sh 'mvn compile'
             }
