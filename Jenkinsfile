@@ -13,8 +13,13 @@ pipeline {
             }
         }
         stage('package') {
+             environment {
+        JAVA_HOME = '/usr/lib/jvm/java-11-amazon-corretto.x86_64'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
             steps {
                 sh 'mvn package'
+                sh 'java --version'
             }
         }
     }
