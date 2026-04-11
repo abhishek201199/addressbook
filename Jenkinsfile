@@ -1,6 +1,11 @@
 pipeline {
     agent none
-
+ tools {
+        maven 'mymaven' 
+    }
+     environment{
+        BUILD_SERVER='ec2-user@172.31.34.191'
+    }
     stages {
            stage('compile') {
              agent any
@@ -9,13 +14,7 @@ pipeline {
             }
         }
         stage('Test') {
-             agent any
-            steps {
-               sh 'mvn test'
-            }
-        }
-        stage('package') {
-             agent {label'jen_slave'}
+            agent {label'jen_slave'}
     //          environment {
     //     JAVA_HOME = '/usr/lib/jvm/java-11-amazon-corretto.x86_64'
     //     PATH = "${JAVA_HOME}/bin:${env.PATH}"
@@ -25,9 +24,24 @@ pipeline {
         maven 'mymaven'
     }
             steps {
-                sh 'mvn package'
+                sh 'mvn test'
                 sh 'java --version'
             }
+        }
+        stage('Package') { // running on slave2 via ssh-agent
+            agent any
+            steps {
+                script{
+                    sshagent(['slave2']) {
+                    echo "Executing the code"
+                    sh "scp  -o StrictHostKeyChecking=no server-config.sh ${BUILD_SERVER}:/home/ec2-user"
+                    sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash server-config.sh'"
+                }
+                }
+                
+            }
+
+            
         }
     }
 }

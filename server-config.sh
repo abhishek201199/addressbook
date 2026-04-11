@@ -13,12 +13,12 @@ then
    cd /home/ec2-user/addressbook
    git pull origin master
 else
-   git clone https://github.com/preethid/addressbook.git
+   git clone https://github.com/abhishek201199/addressbook.git
    cd addressbook
-   git checkout master
+   git checkout devops
 fi
 
-    export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
+    export JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto.x86_64
     export PATH=$JAVA_HOME/bin:$PATH
     source /etc/profile
 
