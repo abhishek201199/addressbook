@@ -2,7 +2,7 @@
 
 sudo yum install git -y
 sudo yum install maven -y
-sudo yum install java-1.8.0-openjdk -y
+sudo yum install java-11-amazon-corretto.x86_64 -y
 
 
 
