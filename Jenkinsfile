@@ -84,7 +84,12 @@ pipeline {
                         script {
                             sshagent(['slave2']){
                      
-                      sh "ssh -o StrictHostKeyChecking=no ${DEP_SERVER}  sudo docker build -t ${IMAGE_NAME}:${BUILD_NUMBER}"
+                      sh '''
+                      ssh -o StrictHostKeyChecking=no ${DEP_SERVER} /
+                      sudo yum install docker -y /
+                      sudo systemctl start docker /
+                       sudo docker build -t ${IMAGE_NAME}:${BUILD_NUMBER}
+                       '''
                     }
                                 
                             }
