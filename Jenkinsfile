@@ -81,10 +81,10 @@ pipeline {
   stage ('run image container)'){
                     agent any
 
-                    input {
-ok "good to deploy"
-
-                    }
+  input {
+        message "Please approve deployment"
+        ok "Good to deploy"
+    }
                     steps {
                         script {
                             sshagent(['slave2']){
