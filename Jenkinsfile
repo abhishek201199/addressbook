@@ -36,7 +36,7 @@ pipeline {
                     sshagent(['slave2']) {
                     echo "Executing the code"
                     sh "scp  -o StrictHostKeyChecking=no server-config.sh ${BUILD_SERVER}:/home/ec2-user"
-                    sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash server-config-docker.sh ${IMAGE-NAME} ${BUILD_NUMBER}'"
+                    sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash server-config-docker.sh ${IMAGE_NAME} ${BUILD_NUMBER}'"
                 }
                 }
                 
