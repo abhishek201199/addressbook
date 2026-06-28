@@ -8,6 +8,20 @@ pipeline {
         IMAGE_NAME='abhishek201100/addbook'
     }
     stages {
+
+         stage('Checkout') {
+
+            agent any
+
+            steps {
+
+                checkout scm
+
+                echo "Code checkout completed"
+
+            }
+        }
+
            stage('compile') {
              agent any
             steps {
