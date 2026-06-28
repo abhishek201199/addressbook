@@ -29,7 +29,7 @@ pipeline {
                 sh 'java --version'
             }
         }
-        stage('Package') { // running on slave2 via ssh-agent
+        stage('image') { // running on slave2 via ssh-agent
             agent any
             steps {
                 script{
@@ -39,10 +39,30 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash server-config-docker.sh ${IMAGE_NAME} ${BUILD_NUMBER}'"
                 }
                 }
-                
+              
             }
 
             
         }
+
+  stage ('push to docker hub'){
+                    agent any
+                    steps {
+                        script {
+                            sshagent(['slave2']){
+                        withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) 
+                      sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} sudo docker login -u ${USER} -p ${PASS}
+                      sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER}  sudo docker push ${IMAGE_NAME}:${BUILD_NUMBER}
+                                
+                            }
+
+                        }
+
+                    }
+                }
+
+
+
+
     }
 }
