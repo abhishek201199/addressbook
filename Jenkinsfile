@@ -50,9 +50,10 @@ pipeline {
                     steps {
                         script {
                             sshagent(['slave2']){
-                        withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) 
-                      sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} sudo docker login -u ${USER} -p ${PASS}
-                      sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER}  sudo docker push ${IMAGE_NAME}:${BUILD_NUMBER}
+                    withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                      sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} sudo docker login -u ${USER} -p ${PASS}"
+                      sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER}  sudo docker push ${IMAGE_NAME}:${BUILD_NUMBER}"
+                    }
                                 
                             }
 
