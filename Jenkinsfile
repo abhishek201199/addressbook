@@ -14,14 +14,14 @@ pipeline {
             }
         }
         stage('Test') {
-            agent {label'jen_slave'}
+            agent any
     //          environment {
     //     JAVA_HOME = '/usr/lib/jvm/java-11-amazon-corretto.x86_64'
     //     PATH = "${JAVA_HOME}/bin:${env.PATH}"
     // }
          tools {
         jdk 'JAVA11'
-        maven 'mymaven'
+        maven 'mymaven' 
     }
             steps {
                 sh 'mvn test'
