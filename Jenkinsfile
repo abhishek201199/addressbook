@@ -80,6 +80,11 @@ pipeline {
 
   stage ('run image container)'){
                     agent any
+
+                    input {
+ok "good to deploy"
+
+                    }
                     steps {
                         script {
                             sshagent(['slave2']){
@@ -90,10 +95,7 @@ pipeline {
                 
                 sudo systemctl start docker &&
                 
-                sudo docker run -d \
-                -p 8080:8080 \
-                --name addressbook \
-                ${IMAGE_NAME}:${BUILD_NUMBER}
+                sudo docker run -d -P ${IMAGE_NAME}:${BUILD_NUMBER}
 
                 '
                 """
