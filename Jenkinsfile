@@ -5,6 +5,7 @@ pipeline {
     }
      environment{
         BUILD_SERVER='ec2-user@172.31.34.191'
+        IMAGE-NAME='abhishek201100/addbook'
     }
     stages {
            stage('compile') {
@@ -35,7 +36,7 @@ pipeline {
                     sshagent(['slave2']) {
                     echo "Executing the code"
                     sh "scp  -o StrictHostKeyChecking=no server-config.sh ${BUILD_SERVER}:/home/ec2-user"
-                    sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash server-config.sh'"
+                    sh "ssh -o StrictHostKeyChecking=no ${BUILD_SERVER} 'bash server-config-docker.sh ${IMAGE-NAME} ${BUILD_NUMBER}'"
                 }
                 }
                 

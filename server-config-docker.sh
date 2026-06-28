@@ -7,11 +7,11 @@ if [ -d "addressbook"]
 then
   echo "repo is already cloned and exists"
   cd /home/ec2-user/addressbook
-  git pull origin feature/docker
+  git pull origin docker
 else 
   git clone https://github.com/abhishek201199/addressbook.git
   cd addressbook
-  git checkout feature/docker
+  git checkout docker
 
 fi
-sudo docker build -t imagename /home/ec2-user/addressbook
+sudo docker build -t $1 $2 /home/ec2-user/addressbook
