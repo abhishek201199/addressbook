@@ -5,7 +5,7 @@ pipeline {
     }
      environment{
         BUILD_SERVER='ec2-user@172.31.34.191'
-        IMAGE-NAME='abhishek201100/addbook'
+        IMAGE_NAME='abhishek201100/addbook'
     }
     stages {
            stage('compile') {
