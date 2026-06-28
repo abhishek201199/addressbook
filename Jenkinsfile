@@ -83,13 +83,20 @@ pipeline {
                     steps {
                         script {
                             sshagent(['slave2']){
-                     
-                      sh """
-                      ssh -o StrictHostKeyChecking=no ${DEP_SERVER} &&
-                      sudo yum install docker -y &&
-                      sudo systemctl start docker &&
-                       sudo docker run ${IMAGE_NAME}:${BUILD_NUMBER}
-                       """
+                     sh """
+                ssh -o StrictHostKeyChecking=no ${DEP_SERVER} '
+                
+                sudo yum install docker -y &&
+                
+                sudo systemctl start docker &&
+                
+                sudo docker run -d \
+                -p 8080:8080 \
+                --name addressbook \
+                ${IMAGE_NAME}:${BUILD_NUMBER}
+
+                '
+                """
                     }
                                 
                             }
