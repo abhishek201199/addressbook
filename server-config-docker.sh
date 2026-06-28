@@ -3,7 +3,7 @@ sudo yum install git -y
 sudo yum install docker -y
 sudo systemctl start docker 
 
-if [ -d "addressbook"]
+if [ -d "addressbook" ]
 then
   echo "repo is already cloned and exists"
   cd /home/ec2-user/addressbook
@@ -14,4 +14,5 @@ else
   git checkout docker
 
 fi
-sudo docker build -t $1 $2 /home/ec2-user/addressbook
+sudo docker build -t $1:$2 /home/ec2-user/addressbook
+
