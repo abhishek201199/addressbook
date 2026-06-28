@@ -5,6 +5,7 @@ pipeline {
     }
      environment{
         BUILD_SERVER='ec2-user@172.31.34.191'
+        DEP_SERVER='ec2-user@172.31.35.190'
         IMAGE_NAME='abhishek201100/addbook'
     }
     stages {
@@ -75,6 +76,30 @@ pipeline {
 
                     }
                 }
+
+
+  stage ('run image container)'){
+                    agent any
+                    steps {
+                        script {
+                            sshagent(['slave2']){
+                     
+                      sh "ssh -o StrictHostKeyChecking=no ${DEP_SERVER}  sudo docker build -t ${IMAGE_NAME}:${BUILD_NUMBER}"
+                    }
+                                
+                            }
+
+                        }
+
+                    }
+                }
+
+
+
+
+
+
+
 
 
 
